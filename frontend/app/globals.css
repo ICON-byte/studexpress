@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ==========================================
+     StudExpress Custom Design Tokens
+     ========================================== */
+  
+  /* Primary brand color (The blue from your "Add Trip" & "Pay" buttons) */
+  --color-primary: #0052cc;
+  --color-primary-hover: #003d99;
+
+  /* Backgrounds */
+  --color-background: #f9fafb; /* The very light grey page background */
+  --color-surface: #ffffff;    /* The pure white cards and navbar */
+
+  /* Typography Colors */
+  --color-text-main: #111827;  /* Dark grey/black for headings */
+  --color-text-muted: #6b7280; /* Light grey for subtitles and labels */
+
+  /* Status Colors */
+  --color-danger: #ef4444;     /* Red for "3 Seats Left" and errors */
+  --color-success: #22c55e;    /* Green for the success checkmark */
+
+  /* Borders */
+  --color-border-subtle: #e5e7eb; /* Light grey borders for inputs */
+
+  /* Font Family (We will use Inter, which closely matches your mockups) */
+  --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ==========================================
+   Global Styles
+   ========================================== */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: Remove the default focus outline on inputs and use a blue ring instead */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
 }

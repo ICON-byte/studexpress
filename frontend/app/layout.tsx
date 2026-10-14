@@ -4,7 +4,11 @@ import './globals.css';
 import Providers from './providers';
 import Navbar from '@/components/Navbar';
 
-const inter = Inter({ subsets: ['latin'] });
+// 1. Add the variable option to match globals.css
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: 'StudExpress',
@@ -18,7 +22,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-50 min-h-screen flex flex-col`}>
+      {/* 2. Use inter.variable instead of inter.className and add antialiased for smooth text */}
+      <body className={`${inter.variable} antialiased bg-gray-50 min-h-screen flex flex-col`}>
         <Providers>
           <Navbar />
           <main className="flex-grow">{children}</main>
