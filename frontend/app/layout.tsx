@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* 2. Use inter.variable instead of inter.className and add antialiased for smooth text */}
-      <body className={`${inter.variable} antialiased bg-gray-50 min-h-screen flex flex-col`}>
+      <body suppressHydrationWarning className={`${inter.variable} antialiased bg-gray-50 min-h-screen flex flex-col`}>
         <Providers>
           <Navbar />
           <main className="flex-grow">{children}</main>

@@ -6,15 +6,15 @@ interface BookingSuccessProps {
 
 export default function BookingSuccess({ onBack }: BookingSuccessProps) {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white px-4">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">
-        Your Trip has been
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white px-4 text-center">
+      <h1 className="mb-8 text-4xl font-medium leading-tight tracking-tight text-black sm:text-[2.6rem]">
+        Your seat has been
         <br />
-        added Successfully!
+        booked successfully!
       </h1>
-      <div className="bg-green-500 rounded-full p-6 mb-12">
+      <div className="mb-9 rounded-full bg-[#45d17a] p-4">
         <svg
-          className="w-16 h-16 text-white"
+          className="h-12 w-12 text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -29,7 +29,7 @@ export default function BookingSuccess({ onBack }: BookingSuccessProps) {
       </div>
       <button
         onClick={onBack}
-        className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 font-medium"
+        className="rounded-lg bg-blue-700 px-8 py-3 font-medium text-white transition hover:bg-blue-800"
       >
         Back to Trips
       </button>

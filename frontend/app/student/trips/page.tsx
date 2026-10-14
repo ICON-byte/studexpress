@@ -1,14 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery, keepPreviousData, useQueryClient } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import api from '@/lib/axios';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import TripCard, { TripData } from '@/components/TripCard';
 import Pagination from '@/components/Pagination';
-import BookingModal from '@/components/BookingModal';
-import BookingSuccess from '@/components/BookingSuccess';
-import toast from 'react-hot-toast';
 
 interface TripsResponse {
   trips: TripData[];
@@ -19,9 +16,6 @@ interface TripsResponse {
 
 function AvailableTrips() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedTrip, setSelectedTrip] = useState<TripData | null>(null);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useQuery<TripsResponse>({
     queryKey: ['trips', currentPage],
@@ -33,22 +27,9 @@ function AvailableTrips() {
   });
 
   const handleBookNow = (trip: TripData) => {
-    setSelectedTrip(trip);
+    // We will handle this in Day 6 with the booking modal
+    console.log('Booking trip:', trip);
   };
-
-  const handleBookingSuccess = () => {
-    setSelectedTrip(null);
-    setShowSuccess(true);
-    // Invalidate cache so the trip list refetches with updated seat counts
-    queryClient.invalidateQueries({ queryKey: ['trips'] });
-    toast.success('Seat booked successfully!');
-  };
-
-  // Show full-screen success (Image 5)
-  // FIX: Pass onBack callback to reset the local state instead of navigating
-  if (showSuccess) {
-    return <BookingSuccess onBack={() => setShowSuccess(false)} />;
-  }
 
   return (
     <div className="max-w-6xl mx-auto py-12 px-4">
@@ -102,16 +83,6 @@ function AvailableTrips() {
             onPageChange={setCurrentPage}
           />
         </>
-      )}
-
-      {/* Booking Modal (Images 3 & 4) */}
-      {selectedTrip && (
-        <BookingModal
-          trip={selectedTrip}
-          isOpen={!!selectedTrip}
-          onClose={() => setSelectedTrip(null)}
-          onSuccess={handleBookingSuccess}
-        />
       )}
     </div>
   );
