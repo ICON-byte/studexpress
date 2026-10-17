@@ -8,7 +8,13 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  // Allow localhost for dev, and the Vercel URL for production
+  origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'http://localhost:3000'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json()); // Allows us to parse JSON bodies
 
 // Import Routes
